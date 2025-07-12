@@ -13,9 +13,9 @@ const Home = () => {
         <div className="home-text">
           <h1>Welkom bij Lakenvelder Zorg</h1>
           <p>“Wij willen (jong)volwassenen en gezinnen (weer) naar eigen vermogen laten participeren in de samenleving.”</p>
-          <button className="btn-leesmeer">
-            Lees Meer <a href='http://localhost:5174/team'></a> <img src={darkarrow} alt="" />
-          </button>
+          <a href="http://localhost:5173/team" className="btn-leesmeer">
+          Lees Meer <img src={darkarrow} alt="" />
+          </a>
         </div>
       </div>
 

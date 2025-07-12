@@ -1,8 +1,9 @@
+/* Base navbar styling */
 nav {
-  width: 100vw;   
-  height: 60px;         
+  width: 100vw;
+  height: 60px;
   background-color: transparent;
-   transition: background-color 0.3s ease, filter 0.2s ease, top 0.2s ease;
+  transition: background-color 0.3s ease, filter 0.2s ease, top 0.2s ease;
   position: fixed;
   top: 7.5px;
   left: 0;
@@ -11,22 +12,26 @@ nav {
   justify-content: space-between;
   z-index: 10;
   filter: drop-shadow(2px 4px 4px #000000);
+  padding: 0 20px;
 }
 
 nav.sticky {
   background-color: rgba(143, 73, 49, 0.95);
-  top: -2px;
+  top: -3.5px;
 }
 
-nav.sticky.logo {
-  filter: drop-shadow(2px 4px 4px #000000);
+.logo-link {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
   width: 400px;
   transition: filter 0.3s ease;
+  user-select: none;
 }
 
+/* Menu styling */
 nav ul {
   list-style: none;
   padding: 0;
@@ -40,20 +45,22 @@ nav ul li {
   list-style: none;
   margin: 5px 20px;
   font-size: 16px;
-  position: relative; 
+  position: relative;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
 }
 
-
-.menu > li a {
+.menu > li a,
+.dropdown-title {
   color: #fff;
   text-decoration: none;
   padding: 8px 12px;
   display: block;
+  user-select: none;
 }
 
+/* Dropdown content */
 .dropdown-content {
   opacity: 0;
   max-height: 0;
@@ -63,13 +70,13 @@ nav ul li {
   top: 100%;
   left: 0;
   min-width: 180px;
-  background: #fff;
+  background: #8F4931;
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
   border-radius: 6px;
   padding: 0;
   margin-top: 0;
   z-index: 1000;
-  pointer-events: none; 
+  pointer-events: none;
   display: block;
 }
 
@@ -97,7 +104,7 @@ nav ul li {
   left: 0;
   height: 3px;
   width: 100%;
-  background-color: #8F4931;
+  background-color: transparent;
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -107,14 +114,170 @@ nav ul li {
 .dropdown-content li a:hover::after {
   transform: scaleX(1);
 }
-.dropdown:hover .dropdown-content,
-.dropdown-content:hover {
-  display: block;
-}
 
-.dropdown:hover .dropdown-content,
+/* Desktop dropdown on hover */
+.dropdown:hover > .dropdown-content,
 .dropdown-content:hover {
   opacity: 1;
   max-height: 500px;
   pointer-events: auto;
+}
+
+/* Hide dropdown content by default */
+.dropdown.open > .dropdown-content {
+  opacity: 1;
+  max-height: 500px;
+  pointer-events: auto;
+  position: relative;
+  box-shadow: none;
+  background: transparent;
+  margin-left: 20px;
+  border-radius: 0;
+}
+
+/* Hamburger styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 26px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1050;
+  padding: 0;
+  margin-right: 0;
+  order: 2; /* Ensure hamburger is after logo */
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .logo {
+    width: 150px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    height: auto;
+    padding-bottom: 10px;
+  }
+
+  /* Show hamburger on mobile, aligned right */
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+
+  /* Menu below hamburger */
+  .menu {
+    width: 100%;
+    background-color: rgba(143, 73, 49, 0.95);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    order: 3; /* after logo(1) and hamburger(2) */
+  }
+
+  .menu.open {
+    max-height: 1000px; /* large enough for all */
+  }
+
+  nav ul {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .menu > li a,
+  .dropdown-title {
+    padding: 12px 20px;
+    width: 100%;
+    color: #fff;
+    user-select: none;
+  }
+
+  /* Dropdown content on mobile (under each dropdown title) */
+  .dropdown-content {
+    position: relative;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin-left: 20px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 1; /* always visible when open */
+    pointer-events: auto;
+    transition: max-height 0.3s ease;
+  }
+
+  .dropdown.open > .dropdown-content {
+    max-height: 500px;
+  }
+
+  .dropdown-content li a {
+    padding: 10px 16px;
+    color: #fff;
+    white-space: normal;
+  }
+
+  .dropdown-content li a:hover::after {
+    transform: scaleX(0);
+  }
+
+  /* Dropdown arrow on mobile */
+  .dropdown > .dropdown-title {
+    position: relative;
+  }
+
+  .dropdown > .dropdown-title::after {
+    content: '▼';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+  }
+
+  /* Remove arrow on desktop */
+  @media (min-width: 769px) {
+    .dropdown > .dropdown-title::after {
+      content: none !important;
+    }
+  }
+}
+
+/* Ensure standalone items like Missie align with other menu items */
+.menu > li:not(.dropdown) {
+  padding-left: 20px;  /* same horizontal padding as dropdown titles */
+  box-sizing: border-box;
 }
