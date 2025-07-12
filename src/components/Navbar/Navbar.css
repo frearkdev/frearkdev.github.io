@@ -1,0 +1,120 @@
+nav {
+  width: 100vw;   
+  height: 60px;         
+  background-color: transparent;
+   transition: background-color 0.3s ease, filter 0.2s ease, top 0.2s ease;
+  position: fixed;
+  top: 7.5px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  filter: drop-shadow(2px 4px 4px #000000);
+}
+
+nav.sticky {
+  background-color: rgba(143, 73, 49, 0.95);
+  top: -2px;
+}
+
+nav.sticky.logo {
+  filter: drop-shadow(2px 4px 4px #000000);
+}
+
+.logo {
+  width: 400px;
+  transition: filter 0.3s ease;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 5px 20px;
+  font-size: 16px;
+  position: relative; 
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+.menu > li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: block;
+}
+
+.dropdown-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  padding: 0;
+  margin-top: 0;
+  z-index: 1000;
+  pointer-events: none; 
+  display: block;
+}
+
+.dropdown-content li {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.dropdown-content li a {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  position: relative;
+  color: black;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-content li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background-color: #8F4931;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content li a:hover::after {
+  transform: scaleX(1);
+}
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  opacity: 1;
+  max-height: 500px;
+  pointer-events: auto;
+}

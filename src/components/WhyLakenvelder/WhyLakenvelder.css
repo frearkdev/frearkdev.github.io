@@ -1,0 +1,33 @@
+.why-section {
+  background-color: #eeeeee;
+  width: 100%;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  padding: 80px 20px;
+}
+
+.why-container {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.why-content {
+  text-align: left;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.why-content p {
+  margin-bottom: 30px;
+}
